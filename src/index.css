@@ -36,6 +36,18 @@ body {
     font-family: "Valorant";
     src: url("/fonts/Valorant Font.ttf") format("truetype");
   }
+  @font-face {
+    font-family: "YatraOne";
+    src: url("/fonts/YatraOne-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Onepiece";
+    src: url("/fonts/one-piece-font.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "pregular";
+    src: url("/fonts/plain-regular-webfont.ttf") format("truetype");
+  }
 }
 
 @layer utilities {
@@ -55,11 +67,53 @@ body {
     font-family: "Zentry";
     font-feature-settings: "ss01" on;
   }
+  .special-font v {
+    font-family: "Valorant";
+  }
+  .special-font y {
+    font-family: "YatraOne";
+  }
+  .special-font o {
+    font-family: "Onepiece";
+  }
+  .special-font pp {
+    font-family: "pregular";
+  }
+
+  .about-subtext {
+    @apply absolute bottom-[-90dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular text-lg md:max-w-[40rem];
+     /* sm:absolute bottom-[-110dvh]; */
+  }
+
+  .about-image {
+    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+  }
+
+  .animated-word {
+    @apply font-black opacity-0;
+    transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
+    transform-origin: 50% 50% -150px !important;
+    will-change: opacity, transform;
+  }
+
+  #play-for-free span {
+  @apply text-xl;
 }
 
-#movee{
+#play-for-free {
+  @apply px-4 py-4;
+}
+
+.bordr{
+  border-radius: 50%;
+}
+
+#movee {
   border-radius: 20px #ffffff;
 }
+
+}
+
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
@@ -161,4 +215,17 @@ body {
     transform: translateY(66%) scale(0.65);
     opacity: 0.8;
   }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out;
 }
