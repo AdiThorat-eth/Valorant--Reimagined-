@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { useState, useRef, useEffect } from "react";
 import Button from "./Button";
+import LiquidButton from "./LiquidButton";
 import { TiLocationArrow } from "react-icons/ti";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -24,6 +25,22 @@ function Hero() {
   const handleMiniVdClick = () => {
     setHasClicked(true);
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+  };
+
+  // Direct download handler
+  const handleDirectDownload = () => {
+    const downloadUrl =
+      "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe";
+
+    // Create a temporary anchor element
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "valorant-installer.exe"; // Optional: specify filename
+
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   useEffect(() => {
@@ -154,7 +171,7 @@ function Hero() {
         </h1>
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="text-7xl font-valorant font-thin hero-heading text-blue-75 absolute top-10 left-10 hover:text-red-500">
+            <h1 className="mt-20 text-7xl font-valorant font-thin hero-heading text-blue-75 absolute top-10 left-10 hover:text-red-500">
               <b>Valorant</b>
             </h1>
             {/* <p className="ml-5 mb-5 max-w-64 font-robertr text-blue-50 text-center"><b>Tactical shooter featuring agents with unique abilities</b></p> */}
@@ -162,7 +179,7 @@ function Hero() {
               id="watch-trailer"
               title="watch Trailer"
               leftIcon={<TiLocationArrow />}
-              containerClass="absolute top-10 left-10 bg-yellow-300 flex-center gap-1"
+              containerClass="absolute top-[15dvh] left-10 bg-yellow-300 border-2 border-black-900 flex-center gap-1 hover:bg-violet-500 "
               onClick={() =>
                 window.open(
                   "https://www.youtube.com/watch?v=gZPyHib9GNw",
@@ -172,6 +189,13 @@ function Hero() {
             />
           </div>
         </div>
+        <LiquidButton
+          id="play-for-free"
+          title="Play (windows)"
+          containerClass="absolute top-[72vh] left-1/2 transform -translate-x-1/2 
+                   border-2 border-white-900 px-14 py-7 shadow-2xl z-[999]"
+          onClick={handleDirectDownload}
+        />
       </div>
       <h1 className="text-8xl font-thin special-font hero-heading absolute bottom-12 right-10 text-black">
         <b>5V5</b>
