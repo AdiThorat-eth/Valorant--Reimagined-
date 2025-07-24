@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import gsap from "gsap";
-import Hero from "./components/hero";
 import { useGSAP } from "@gsap/react";
+import Hero from "./components/hero";
+import About from "./components/About";
+import Navbar from "./components/navbar";
+import Features from "./components/Features";
 
 function App() {
   let [showContent, setShowContent] = useState(false);
@@ -59,7 +62,7 @@ function App() {
             </mask>
           </defs>
           <image
-            href="/img/bg.jpg"
+            href="/img/intro.jpg"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid slice"
@@ -67,8 +70,15 @@ function App() {
           />
         </svg>
       </div>
-      <Hero />
-      <section className="z-0 min-h-screen bg-blue-75" />
+      
+      {/* Only render navbar and content after loading completes */}
+      {showContent && (
+        <>
+          <Navbar />
+          <Hero />
+          <About />
+        </>
+      )}
     </main>
   );
 }
